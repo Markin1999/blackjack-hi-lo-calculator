@@ -5,7 +5,9 @@ import Example from "./Componenti/Navbar";
 function App() {
   return (
     <>
-      <Example />
+      <div>
+        <Example />
+      </div>
       <Deck />
     </>
   );
