@@ -1,14 +1,14 @@
 import "./App.css";
 import Deck from "./Componenti/Deck";
+import Main from "./Componenti/main";
+import { Navbar } from "./Componenti/Navbar";
 
 function App() {
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full bg-green-700 shadow-md z-50 h-7"></nav>
+      <Navbar />
 
-      <div>
-        <Deck />
-      </div>
+      <Main />
     </>
   );
 }
