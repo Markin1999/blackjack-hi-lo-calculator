@@ -16,7 +16,20 @@ function App() {
         throw new Error(`Errore: ${response.status}`);
       }
       const data = await response.json();
-      setCards((prevCards) => [...prevCards, ...data.cards]);
+      setCards((prevCards) => [
+        ...prevCards,
+        ...data.cards.map((card) => ({
+          ...card,
+          value:
+            card.value === "QUEEN" ||
+            card.value === "KING" ||
+            card.value === "JACK"
+              ? "10"
+              : card.value === "ACE"
+              ? "1"
+              : card.value,
+        })),
+      ]);
     } catch (err) {
       setError(err.message);
     }
@@ -48,14 +61,14 @@ function App() {
       </div>
       <div>
         <Bottone data={cards} setCards={setCards} />
-        <Bottone data={cards} />
-        <Bottone data={cards} />
-        <Bottone data={cards} />
-        <Bottone data={cards} />
-        <Bottone data={cards} />
-        <Bottone data={cards} />
-        <Bottone data={cards} />
-        <Bottone data={cards} />
+        <Bottone data={cards} setCards={setCards} />
+        <Bottone data={cards} setCards={setCards} />
+        <Bottone data={cards} setCards={setCards} />
+        <Bottone data={cards} setCards={setCards} />
+        <Bottone data={cards} setCards={setCards} />
+        <Bottone data={cards} setCards={setCards} />
+        <Bottone data={cards} setCards={setCards} />
+        <Bottone data={cards} setCards={setCards} />
       </div>
     </>
   );
