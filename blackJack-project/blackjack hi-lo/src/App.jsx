@@ -3,10 +3,12 @@ import "./App.css";
 import { Bottone } from "./Componenti/Bottone";
 import Main from "./Componenti/Main";
 import AggiungiMazzo from "./Componenti/AggiungiMazzo";
+import Calcolo from "./Componenti/Calcolo";
 
 function App() {
   const [cards, setCards] = useState([]);
   const [error, setError] = useState(null);
+  const [valore, setValore] = useState(0);
 
   const fetchCards = async () => {
     const apiUrl = "https://deckofcardsapi.com/api/deck/new/draw/?count=52";
@@ -59,26 +61,17 @@ function App() {
           setCards={setCards}
         />
       </div>
+      <Calcolo valore={valore} />
       <div>
-        <Bottone data={cards} setCards={setCards} />
-        <Bottone data={cards} setCards={setCards} />
-        <Bottone data={cards} setCards={setCards} />
-        <Bottone data={cards} setCards={setCards} />
-        <Bottone data={cards} setCards={setCards} />
-        <Bottone data={cards} setCards={setCards} />
-        <Bottone data={cards} setCards={setCards} />
-        <Bottone data={cards} setCards={setCards} />
-        <Bottone data={cards} setCards={setCards} />
-        ---------------------
-        <Bottone data={cards} setCards={setCards} />
-        <Bottone data={cards} setCards={setCards} />
-        <Bottone data={cards} setCards={setCards} />
-        <Bottone data={cards} setCards={setCards} />
-        <Bottone data={cards} setCards={setCards} />
-        <Bottone data={cards} setCards={setCards} />
-        <Bottone data={cards} setCards={setCards} />
-        <Bottone data={cards} setCards={setCards} />
-        <Bottone data={cards} setCards={setCards} />
+        <Bottone data={cards} setCards={setCards} setValore={setValore} />
+        <Bottone data={cards} setCards={setCards} setValore={setValore} />
+        <Bottone data={cards} setCards={setCards} setValore={setValore} />
+        <Bottone data={cards} setCards={setCards} setValore={setValore} />
+        <Bottone data={cards} setCards={setCards} setValore={setValore} />
+        <Bottone data={cards} setCards={setCards} setValore={setValore} />
+        <Bottone data={cards} setCards={setCards} setValore={setValore} />
+        <Bottone data={cards} setCards={setCards} setValore={setValore} />
+        <Bottone data={cards} setCards={setCards} setValore={setValore} />
       </div>
     </>
   );

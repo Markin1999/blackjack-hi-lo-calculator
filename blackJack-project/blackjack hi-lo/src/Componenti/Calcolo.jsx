@@ -1,10 +1,9 @@
-export default function Calcolo() {
+import { useState } from "react";
+
+export default function Calcolo({ valore }) {
   return (
     <div>
-      <p>Azione da compiere: </p>
-      <p>Conteggio: </p>
-
-      <p>Se il punteggio è maggiore di 0: </p>
+      <p>Conteggio: {valore}</p>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export function Bottone({ data, setCards }) {
+export function Bottone({ data, setCards, setValore }) {
   const [attivo, setAttivo] = useState(false);
   const [value, setValue] = useState("");
   const [value2, setValue2] = useState("");
@@ -20,6 +20,16 @@ export function Bottone({ data, setCards }) {
       }
       return prevCards;
     });
+
+    setValore((prevValore) => {
+      if (newValue === "a" || newValue === "10") {
+        return prevValore - 1;
+      } else if (newValue === "7" || newValue === "8" || newValue === "9") {
+        return prevValore - 0;
+      } else {
+        return prevValore + 1;
+      }
+    });
   }
 
   function onChangeSecond(event) {
@@ -37,6 +47,15 @@ export function Bottone({ data, setCards }) {
         return updatedCards;
       }
       return prevCards;
+    });
+    setValore((prevValore) => {
+      if (newValue2 === "a" || newValue2 === "10") {
+        return prevValore - 1;
+      } else if (newValue2 === "7" || newValue2 === "8" || newValue2 === "9") {
+        return prevValore - 0;
+      } else {
+        return prevValore + 1;
+      }
     });
   }
 
