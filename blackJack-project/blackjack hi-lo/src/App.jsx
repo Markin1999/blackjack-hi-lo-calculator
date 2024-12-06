@@ -60,3 +60,5 @@ function App() {
 }
 
 export default App;
+
+//Fare in modo che posso reindirizzare quanti mazzi voglio e con lo spread operator, vado ad eliminare l'elemento selezionato dall'input
