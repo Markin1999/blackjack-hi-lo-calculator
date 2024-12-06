@@ -26,7 +26,7 @@ function App() {
             card.value === "QUEEN" ||
             card.value === "KING" ||
             card.value === "JACK"
-              ? "10"
+              ? "0"
               : card.value === "ACE"
               ? "a"
               : card.value,

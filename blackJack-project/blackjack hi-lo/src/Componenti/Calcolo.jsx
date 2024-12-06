@@ -5,6 +5,7 @@ export default function Calcolo({ valore, cards }) {
   const trueCount = valore / mazzi;
   return (
     <div>
+      <p>{trueCount.toFixed(2)}</p>
       <p>Conteggio: {valore}</p>
       {trueCount > +2 ? (
         <p>La prossima sarà una carta alta</p>

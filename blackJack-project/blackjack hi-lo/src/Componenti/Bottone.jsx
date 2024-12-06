@@ -22,11 +22,17 @@ export function Bottone({ data, setCards, setValore }) {
     });
 
     setValore((prevValore) => {
-      if (newValue === "a" || newValue === "10") {
+      if (newValue === "a" || newValue === "0") {
         return prevValore - 1;
       } else if (newValue === "7" || newValue === "8" || newValue === "9") {
         return prevValore - 0;
-      } else {
+      } else if (
+        newValue === "2" ||
+        newValue === "3" ||
+        newValue === "4" ||
+        newValue === "5" ||
+        newValue === "6"
+      ) {
         return prevValore + 1;
       }
     });
@@ -49,12 +55,20 @@ export function Bottone({ data, setCards, setValore }) {
       return prevCards;
     });
     setValore((prevValore) => {
-      if (newValue2 === "a" || newValue2 === "10") {
+      if (newValue2 === "a" || newValue2 === "0") {
         return prevValore - 1;
       } else if (newValue2 === "7" || newValue2 === "8" || newValue2 === "9") {
         return prevValore - 0;
-      } else {
+      } else if (
+        newValue2 === "2" ||
+        newValue2 === "3" ||
+        newValue2 === "4" ||
+        newValue2 === "5" ||
+        newValue2 === "6"
+      ) {
         return prevValore + 1;
+      } else {
+        prevValore;
       }
     });
   }
@@ -78,20 +92,34 @@ export function Bottone({ data, setCards, setValore }) {
     setAttivo(false);
   }
 
+  function pulisciInput() {
+    setValue("");
+    setValue2("");
+  }
+
   return (
     <>
       {!attivo ? (
-        <button onClick={click}>Attiva</button>
+        <button className={"border-black"} onClick={click}>
+          Attiva
+        </button>
       ) : (
         <div>
-          <button onClick={disattiva}>Disattiva</button>
+          <button className={"border-black"} onClick={disattiva}>
+            Disattiva
+          </button>
+          <button className={"border-black"} onClick={pulisciInput}>
+            Pulisci
+          </button>
           <input
+            className={"border-black"}
             type="text"
             onChange={onChange}
             value={value}
             placeholder="Inserisci un valore carta"
           />
           <input
+            className={"border-black"}
             type="text"
             onChange={onChangeSecond}
             value={value2}
