@@ -61,7 +61,7 @@ function App() {
           setCards={setCards}
         />
       </div>
-      <Calcolo valore={valore} />
+      <Calcolo valore={valore} cards={cards} />
       <div>
         <Bottone data={cards} setCards={setCards} setValore={setValore} />
         <Bottone data={cards} setCards={setCards} setValore={setValore} />
