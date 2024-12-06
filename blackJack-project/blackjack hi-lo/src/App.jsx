@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import { Bottone } from "./Componenti/Bottone";
 import Main from "./Componenti/Main";
+import AggiungiMazzo from "./Componenti/AggiungiMazzo";
 
 function App() {
   const [cards, setCards] = useState([]);
   const [error, setError] = useState(null);
-  const [cardArray, setCardArray] = useState([]);
 
   const fetchCards = async () => {
     const apiUrl = "https://deckofcardsapi.com/api/deck/new/draw/?count=52";
@@ -30,30 +30,32 @@ function App() {
     return <div>Errore: {error}</div>;
   }
 
-  function addToArray(item) {
-    setCardArray((prevCardArray) => [...prevCardArray, Number(item)]);
-  }
-
   useEffect(() => {
-    console.log("Valori in cardArray:", cardArray);
-  }, [cardArray]);
+    console.log(cards);
+  }, [cards]);
 
   return (
     <>
-      <div>
+      <div style={{ display: "none" }}>
         <Main />
       </div>
-
       <div>
-        <Bottone data={cards} addToArray={addToArray} />
-        <Bottone data={cards} addToArray={addToArray} />
-        <Bottone data={cards} addToArray={addToArray} />
-        <Bottone data={cards} addToArray={addToArray} />
-        <Bottone data={cards} addToArray={addToArray} />
-        <Bottone data={cards} addToArray={addToArray} />
-        <Bottone data={cards} addToArray={addToArray} />
-        <Bottone data={cards} addToArray={addToArray} />
-        <Bottone data={cards} addToArray={addToArray} />
+        <AggiungiMazzo
+          fetchCards={fetchCards}
+          cards={cards}
+          setCards={setCards}
+        />
+      </div>
+      <div>
+        <Bottone data={cards} setCards={setCards} />
+        <Bottone data={cards} />
+        <Bottone data={cards} />
+        <Bottone data={cards} />
+        <Bottone data={cards} />
+        <Bottone data={cards} />
+        <Bottone data={cards} />
+        <Bottone data={cards} />
+        <Bottone data={cards} />
       </div>
     </>
   );

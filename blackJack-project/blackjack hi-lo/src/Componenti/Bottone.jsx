@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export function Bottone({ data, addToArray }) {
+export function Bottone({ data, setCards }) {
   const [attivo, setAttivo] = useState(false);
   const [value, setValue] = useState("");
   const [value2, setValue2] = useState("");
@@ -10,20 +10,34 @@ export function Bottone({ data, addToArray }) {
     const newValue = event.target.value;
     setValue(newValue);
     findCards(newValue, value2);
+
+    setCards((prevCards) => {
+      const index = prevCards.findIndex((card) => card.value === newValue);
+      if (index !== -1) {
+        const updatedCards = [...prevCards];
+        updatedCards.splice(index, 1);
+        return updatedCards;
+      }
+      return prevCards;
+    });
   }
 
   function onChangeSecond(event) {
     const newValue2 = event.target.value;
     setValue2(newValue2);
     findCards(value, newValue2);
-  }
 
-  function click() {
-    setAttivo(true);
-  }
-
-  function disattiva() {
-    setAttivo(false);
+    setCards((prevCards) => {
+      const indexToRemove = prevCards.findIndex(
+        (card) => card.value === newValue2
+      );
+      if (indexToRemove !== -1) {
+        const updatedCards = [...prevCards];
+        updatedCards.splice(indexToRemove, 1);
+        return updatedCards;
+      }
+      return prevCards;
+    });
   }
 
   function findCards(input1, input2) {
@@ -34,12 +48,15 @@ export function Bottone({ data, addToArray }) {
     if (firstMatchInput1) results.push(firstMatchInput1);
     if (firstMatchInput2) results.push(firstMatchInput2);
 
-    addToArray((prev) => [
-      ...prev,
-      ...results.filter((res) => !prev.includes(res)),
-    ]);
-
     setFilteredCards(results);
+  }
+
+  function click() {
+    setAttivo(true);
+  }
+
+  function disattiva() {
+    setAttivo(false);
   }
 
   return (
