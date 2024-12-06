@@ -6,6 +6,7 @@ import Main from "./Componenti/Main";
 function App() {
   const [cards, setCards] = useState([]);
   const [error, setError] = useState(null);
+  const [cardArray, setCardArray] = useState([]);
 
   const fetchCards = async () => {
     const apiUrl = "https://deckofcardsapi.com/api/deck/new/draw/?count=52";
@@ -29,6 +30,14 @@ function App() {
     return <div>Errore: {error}</div>;
   }
 
+  function addToArray(item) {
+    setCardArray((prevCardArray) => [...prevCardArray, Number(item)]);
+  }
+
+  useEffect(() => {
+    console.log("Valori in cardArray:", cardArray);
+  }, [cardArray]);
+
   return (
     <>
       <div>
@@ -36,7 +45,15 @@ function App() {
       </div>
 
       <div>
-        <Bottone data={cards} />
+        <Bottone data={cards} addToArray={addToArray} />
+        <Bottone data={cards} addToArray={addToArray} />
+        <Bottone data={cards} addToArray={addToArray} />
+        <Bottone data={cards} addToArray={addToArray} />
+        <Bottone data={cards} addToArray={addToArray} />
+        <Bottone data={cards} addToArray={addToArray} />
+        <Bottone data={cards} addToArray={addToArray} />
+        <Bottone data={cards} addToArray={addToArray} />
+        <Bottone data={cards} addToArray={addToArray} />
       </div>
     </>
   );

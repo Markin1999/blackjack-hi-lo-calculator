@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export function Bottone({ data }) {
+export function Bottone({ data, addToArray }) {
   const [attivo, setAttivo] = useState(false);
   const [value, setValue] = useState("");
   const [value2, setValue2] = useState("");
@@ -27,9 +27,18 @@ export function Bottone({ data }) {
   }
 
   function findCards(input1, input2) {
-    const results = data.filter(
-      (card) => card.value === input1 || card.value === input2
-    );
+    const firstMatchInput1 = data.find((card) => card.value === input1);
+    const firstMatchInput2 = data.find((card) => card.value === input2);
+
+    const results = [];
+    if (firstMatchInput1) results.push(firstMatchInput1);
+    if (firstMatchInput2) results.push(firstMatchInput2);
+
+    addToArray((prev) => [
+      ...prev,
+      ...results.filter((res) => !prev.includes(res)),
+    ]);
+
     setFilteredCards(results);
   }
 
