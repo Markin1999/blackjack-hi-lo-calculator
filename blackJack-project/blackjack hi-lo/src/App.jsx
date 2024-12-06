@@ -26,7 +26,7 @@ function App() {
             card.value === "JACK"
               ? "10"
               : card.value === "ACE"
-              ? "1"
+              ? "a"
               : card.value,
         })),
       ]);
@@ -60,6 +60,16 @@ function App() {
         />
       </div>
       <div>
+        <Bottone data={cards} setCards={setCards} />
+        <Bottone data={cards} setCards={setCards} />
+        <Bottone data={cards} setCards={setCards} />
+        <Bottone data={cards} setCards={setCards} />
+        <Bottone data={cards} setCards={setCards} />
+        <Bottone data={cards} setCards={setCards} />
+        <Bottone data={cards} setCards={setCards} />
+        <Bottone data={cards} setCards={setCards} />
+        <Bottone data={cards} setCards={setCards} />
+        ---------------------
         <Bottone data={cards} setCards={setCards} />
         <Bottone data={cards} setCards={setCards} />
         <Bottone data={cards} setCards={setCards} />

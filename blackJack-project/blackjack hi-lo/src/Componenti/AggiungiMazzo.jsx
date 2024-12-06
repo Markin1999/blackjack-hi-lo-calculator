@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function AggiungiMazzo({ fetchCards, cards, setCards }) {
   const [clickBottone, setClickBottone] = useState(1);
 
   function click() {
-    setClickBottone(() => clickBottone + 1);
     fetchCards();
   }
+
+  useEffect(() => {
+    const mazzi = cards.length / 52;
+    setClickBottone(mazzi % 1 > 0.5 ? Math.ceil(mazzi) : Math.floor(mazzi));
+  }, [cards]);
 
   function clickRemove() {
     setClickBottone(0);
