@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 
-export default function RemoveCard({ cards, setCards }) {
-  const [filter, setFilter] = useState([...cards]);
-
-  useEffect(() => {
-    setFilter([...cards]);
-  }, [cards]);
-
+export default function RemoveCard({ cards, setCards, cards2 }) {
   function onClick(valueToRemove) {
-    setCards((prevFilteredCards) =>
-      prevFilteredCards.filter((card) => parseInt(card.value) === valueToRemove)
-    );
+    setCards((prevFilteredCards) => {
+      const firstMatch = prevFilteredCards.findIndex(
+        (card) => parseInt(card.value) === valueToRemove
+      );
+
+      if (firstMatch !== -1) {
+        const updatedCards = [...prevFilteredCards];
+        updatedCards.splice(firstMatch, 1);
+        return updatedCards;
+      }
+      return prevFilteredCards;
+    });
   }
 
   return (
@@ -21,19 +24,13 @@ export default function RemoveCard({ cards, setCards }) {
           justifyContent: "center",
         }}
       >
-        {filter.length > 0 ? (
+        {cards2.length > 0 ? (
           <>
             {(() => {
-              const card1 = cards.find((card) => parseInt(card.value) === 1);
+              const card1 = cards2.find((card) => parseInt(card.value) === 1);
               return card1 ? (
                 <img
-                  onClick={() =>
-                    onClick(
-                      parseInt(
-                        cards.find((card) => card.value === card1.value)?.value
-                      )
-                    )
-                  }
+                  onClick={() => onClick(parseInt(cards.find(card1.value)))}
                   key={`${card1.code}`}
                   src={card1.image}
                   alt={`${card1.value} of ${card1.suit}`}
@@ -42,7 +39,7 @@ export default function RemoveCard({ cards, setCards }) {
               ) : null;
             })()}
             {(() => {
-              const card2 = cards.find((card) => parseInt(card.value) === 2);
+              const card2 = cards2.find((card) => parseInt(card.value) === 2);
               return card2 ? (
                 <img
                   onClick={() => onClick(parseInt(card2.value))}
@@ -54,7 +51,7 @@ export default function RemoveCard({ cards, setCards }) {
               ) : null;
             })()}
             {(() => {
-              const card3 = cards.find((card) => parseInt(card.value) === 3);
+              const card3 = cards2.find((card) => parseInt(card.value) === 3);
               return card3 ? (
                 <img
                   onClick={() => onClick(parseInt(card3.value))}
@@ -66,7 +63,7 @@ export default function RemoveCard({ cards, setCards }) {
               ) : null;
             })()}
             {(() => {
-              const card4 = cards.find((card) => parseInt(card.value) === 4);
+              const card4 = cards2.find((card) => parseInt(card.value) === 4);
               return card4 ? (
                 <img
                   onClick={() => onClick(parseInt(card4.value))}
@@ -78,7 +75,7 @@ export default function RemoveCard({ cards, setCards }) {
               ) : null;
             })()}
             {(() => {
-              const card5 = cards.find((card) => parseInt(card.value) === 5);
+              const card5 = cards2.find((card) => parseInt(card.value) === 5);
               return card5 ? (
                 <img
                   onClick={() => onClick(parseInt(card5.value))}
@@ -90,7 +87,7 @@ export default function RemoveCard({ cards, setCards }) {
               ) : null;
             })()}
             {(() => {
-              const card6 = cards.find((card) => parseInt(card.value) === 6);
+              const card6 = cards2.find((card) => parseInt(card.value) === 6);
               return card6 ? (
                 <img
                   onClick={() => onClick(parseInt(card6.value))}
@@ -102,7 +99,7 @@ export default function RemoveCard({ cards, setCards }) {
               ) : null;
             })()}
             {(() => {
-              const card7 = cards.find((card) => parseInt(card.value) === 7);
+              const card7 = cards2.find((card) => parseInt(card.value) === 7);
               return card7 ? (
                 <img
                   onClick={() => onClick(parseInt(card7.value))}
@@ -114,7 +111,7 @@ export default function RemoveCard({ cards, setCards }) {
               ) : null;
             })()}
             {(() => {
-              const card8 = cards.find((card) => parseInt(card.value) === 8);
+              const card8 = cards2.find((card) => parseInt(card.value) === 8);
               return card8 ? (
                 <img
                   onClick={() => onClick(parseInt(card8.value))}
@@ -126,7 +123,7 @@ export default function RemoveCard({ cards, setCards }) {
               ) : null;
             })()}
             {(() => {
-              const card9 = cards.find((card) => parseInt(card.value) === 9);
+              const card9 = cards2.find((card) => parseInt(card.value) === 9);
               return card9 ? (
                 <img
                   onClick={() => onClick(parseInt(card9.value))}
@@ -138,7 +135,7 @@ export default function RemoveCard({ cards, setCards }) {
               ) : null;
             })()}
             {(() => {
-              const card10 = cards.find((card) => parseInt(card.value) === 10);
+              const card10 = cards2.find((card) => parseInt(card.value) === 0);
               return card10 ? (
                 <img
                   onClick={() => onClick(parseInt(card10.value))}

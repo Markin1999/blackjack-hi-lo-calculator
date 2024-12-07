@@ -10,6 +10,7 @@ function App() {
   const [cards, setCards] = useState([]);
   const [error, setError] = useState(null);
   const [valore, setValore] = useState(0);
+  const [cards2, setCards2] = useState([]);
 
   const fetchCards = async () => {
     const apiUrl = "https://deckofcardsapi.com/api/deck/new/draw/?count=52";
@@ -19,6 +20,23 @@ function App() {
         throw new Error(`Errore: ${response.status}`);
       }
       const data = await response.json();
+
+      setCards2((prevCards) => [
+        ...prevCards,
+        ...data.cards.map((card) => ({
+          ...card,
+          value:
+            card.value === "QUEEN" ||
+            card.value === "KING" ||
+            card.value === "JACK" ||
+            card.value === "10"
+              ? "0"
+              : card.value === "ACE"
+              ? "1"
+              : card.value,
+        })),
+      ]);
+
       setCards((prevCards) => [
         ...prevCards,
         ...data.cards.map((card) => ({
@@ -94,7 +112,7 @@ function App() {
         <Calcolo valore={valore} cards={cards} />
       </div>
 
-      <RemoveCard cards={cards} setCards={setCards} />
+      <RemoveCard cards={cards} setCards={setCards} cards2={cards2} />
     </>
   );
 }
