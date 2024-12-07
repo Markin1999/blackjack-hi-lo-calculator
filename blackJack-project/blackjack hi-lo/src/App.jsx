@@ -5,6 +5,7 @@ import Main from "./Componenti/Main";
 import AggiungiMazzo from "./Componenti/AggiungiMazzo";
 import Calcolo from "./Componenti/Calcolo";
 import RemoveCard from "./Componenti/removeCardd";
+import Apc from "./Componenti/apc";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -114,7 +115,7 @@ function App() {
         <Calcolo valore={valore} cards={cards} />
       </div>
 
-      <RemoveCard
+      <Apc
         cards={cards}
         setCards={setCards}
         cards2={cards2}
