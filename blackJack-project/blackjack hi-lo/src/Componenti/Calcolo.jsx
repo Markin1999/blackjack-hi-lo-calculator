@@ -13,7 +13,9 @@ export default function Calcolo({ valore, cards }) {
       }}
     >
       <p>trueCount: {trueCount.toFixed(2)}</p>
+
       <p>Conteggio Hi-Lo: {valore}</p>
+
       {trueCount > +2 ? (
         <p>prossima sarà una carta alta</p>
       ) : trueCount < -2 ? (

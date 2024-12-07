@@ -4,6 +4,7 @@ import { Bottone } from "./Componenti/Bottone";
 import Main from "./Componenti/Main";
 import AggiungiMazzo from "./Componenti/AggiungiMazzo";
 import Calcolo from "./Componenti/Calcolo";
+import RemoveCard from "./Componenti/removeCardd";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -48,10 +49,9 @@ function App() {
   useEffect(() => {
     console.log(cards);
   }, [cards]);
-
   return (
     <>
-      <div className="container">
+      <div className="container" style={{ display: "none" }}>
         <div>
           <Main />
         </div>
@@ -91,9 +91,10 @@ function App() {
         />
       </div>
       <div className="calcolo">
-        {" "}
         <Calcolo valore={valore} cards={cards} />
       </div>
+
+      <RemoveCard cards={cards} setCards={setCards} />
     </>
   );
 }
