@@ -69,36 +69,38 @@ function App() {
   }, [cards]);
   return (
     <>
-      <div className="container" style={{ display: "none" }}>
+      <div className="container">
         <div>
           <Main />
         </div>
-        <div className="btn btn-1">
-          <Bottone data={cards} setCards={setCards} setValore={setValore} />
-        </div>
-        <div className="btn btn-2">
-          <Bottone data={cards} setCards={setCards} setValore={setValore} />
-        </div>
-        <div className="btn btn-3">
-          <Bottone data={cards} setCards={setCards} setValore={setValore} />
-        </div>
-        <div className="btn btn-4">
-          <Bottone data={cards} setCards={setCards} setValore={setValore} />
-        </div>
-        <div className="btn btn-5">
-          <Bottone data={cards} setCards={setCards} setValore={setValore} />
-        </div>
-        <div className="btn btn-6">
-          <Bottone data={cards} setCards={setCards} setValore={setValore} />
-        </div>
-        <div className="btn btn-7">
-          <Bottone data={cards} setCards={setCards} setValore={setValore} />
-        </div>
-        <div className="btn btn-8">
-          <Bottone data={cards} setCards={setCards} setValore={setValore} />
-        </div>
-        <div className="btn btn-9">
-          <Bottone data={cards} setCards={setCards} setValore={setValore} />
+        <div style={{ display: "none" }}>
+          <div className="btn btn-1">
+            <Bottone data={cards} setCards={setCards} setValore={setValore} />
+          </div>
+          <div className="btn btn-2">
+            <Bottone data={cards} setCards={setCards} setValore={setValore} />
+          </div>
+          <div className="btn btn-3">
+            <Bottone data={cards} setCards={setCards} setValore={setValore} />
+          </div>
+          <div className="btn btn-4">
+            <Bottone data={cards} setCards={setCards} setValore={setValore} />
+          </div>
+          <div className="btn btn-5">
+            <Bottone data={cards} setCards={setCards} setValore={setValore} />
+          </div>
+          <div className="btn btn-6">
+            <Bottone data={cards} setCards={setCards} setValore={setValore} />
+          </div>
+          <div className="btn btn-7">
+            <Bottone data={cards} setCards={setCards} setValore={setValore} />
+          </div>
+          <div className="btn btn-8">
+            <Bottone data={cards} setCards={setCards} setValore={setValore} />
+          </div>
+          <div className="btn btn-9">
+            <Bottone data={cards} setCards={setCards} setValore={setValore} />
+          </div>
         </div>
       </div>
       <div className="container-main">
@@ -112,7 +114,12 @@ function App() {
         <Calcolo valore={valore} cards={cards} />
       </div>
 
-      <RemoveCard cards={cards} setCards={setCards} cards2={cards2} />
+      <RemoveCard
+        cards={cards}
+        setCards={setCards}
+        cards2={cards2}
+        setValore={setValore}
+      />
     </>
   );
 }
