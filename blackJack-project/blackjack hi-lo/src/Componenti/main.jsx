@@ -2,7 +2,7 @@ import blackjeckImage from "../assets/blackjack.webp";
 
 export default function Main() {
   return (
-    <div className="relative flex justify-center items-center">
+    <div className="image">
       <img
         src={blackjeckImage}
         alt="Blackjack"

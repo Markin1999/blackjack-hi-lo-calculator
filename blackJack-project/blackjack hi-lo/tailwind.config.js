@@ -1,11 +1,24 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./index.html", // Se hai un file HTML nella root
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}", // Percorso ai file del progetto
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        ".no-arrows": {
+          "-moz-appearance": "textfield",
+          "&::-webkit-inner-spin-button": {
+            appearance: "none",
+          },
+          "&::-webkit-outer-spin-button": {
+            appearance: "none",
+          },
+        },
+      });
+    },
+  ],
 };

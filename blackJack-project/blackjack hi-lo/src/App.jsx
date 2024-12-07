@@ -28,7 +28,7 @@ function App() {
             card.value === "JACK"
               ? "0"
               : card.value === "ACE"
-              ? "a"
+              ? "1"
               : card.value,
         })),
       ]);
@@ -51,27 +51,48 @@ function App() {
 
   return (
     <>
-      <div style={{ display: "none" }}>
-        <Main />
+      <div className="container">
+        <div>
+          <Main />
+        </div>
+        <div className="btn btn-1">
+          <Bottone data={cards} setCards={setCards} setValore={setValore} />
+        </div>
+        <div className="btn btn-2">
+          <Bottone data={cards} setCards={setCards} setValore={setValore} />
+        </div>
+        <div className="btn btn-3">
+          <Bottone data={cards} setCards={setCards} setValore={setValore} />
+        </div>
+        <div className="btn btn-4">
+          <Bottone data={cards} setCards={setCards} setValore={setValore} />
+        </div>
+        <div className="btn btn-5">
+          <Bottone data={cards} setCards={setCards} setValore={setValore} />
+        </div>
+        <div className="btn btn-6">
+          <Bottone data={cards} setCards={setCards} setValore={setValore} />
+        </div>
+        <div className="btn btn-7">
+          <Bottone data={cards} setCards={setCards} setValore={setValore} />
+        </div>
+        <div className="btn btn-8">
+          <Bottone data={cards} setCards={setCards} setValore={setValore} />
+        </div>
+        <div className="btn btn-9">
+          <Bottone data={cards} setCards={setCards} setValore={setValore} />
+        </div>
       </div>
-      <div>
+      <div className="container-main">
         <AggiungiMazzo
           fetchCards={fetchCards}
           cards={cards}
           setCards={setCards}
         />
       </div>
-      <Calcolo valore={valore} cards={cards} />
-      <div>
-        <Bottone data={cards} setCards={setCards} setValore={setValore} />
-        <Bottone data={cards} setCards={setCards} setValore={setValore} />
-        <Bottone data={cards} setCards={setCards} setValore={setValore} />
-        <Bottone data={cards} setCards={setCards} setValore={setValore} />
-        <Bottone data={cards} setCards={setCards} setValore={setValore} />
-        <Bottone data={cards} setCards={setCards} setValore={setValore} />
-        <Bottone data={cards} setCards={setCards} setValore={setValore} />
-        <Bottone data={cards} setCards={setCards} setValore={setValore} />
-        <Bottone data={cards} setCards={setCards} setValore={setValore} />
+      <div className="calcolo">
+        {" "}
+        <Calcolo valore={valore} cards={cards} />
       </div>
     </>
   );

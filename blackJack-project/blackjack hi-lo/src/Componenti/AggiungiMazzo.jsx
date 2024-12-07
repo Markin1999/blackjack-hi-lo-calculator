@@ -18,13 +18,31 @@ export default function AggiungiMazzo({ fetchCards, cards, setCards }) {
   }
 
   return (
-    <div>
-      <button onClick={click}>Aggiungi Mazzo</button>
-      <p>
+    <div style={{ display: "flex", gap: "10px", backgroundColor: "white" }}>
+      <button
+        style={{
+          backgroundColor: "green",
+          color: "white",
+          border: "1px solid white",
+        }}
+        onClick={click}
+      >
+        Aggiungi Mazzo
+      </button>
+      <p style={{ backgroundColor: "white" }}>
         Carte nell array Cards: <strong>{cards.length}</strong> Quanti mazzi
         sono presenti:<strong>{clickBottone}</strong>
       </p>
-      <button onClick={clickRemove}>Rimuovi mazzo</button>
+      <button
+        style={{
+          backgroundColor: "red",
+          color: "white",
+          border: "1px solid white",
+        }}
+        onClick={clickRemove}
+      >
+        Rimuovi mazzo
+      </button>
     </div>
   );
 }

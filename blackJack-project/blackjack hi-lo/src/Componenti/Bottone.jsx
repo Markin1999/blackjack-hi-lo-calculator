@@ -4,6 +4,7 @@ export function Bottone({ data, setCards, setValore }) {
   const [attivo, setAttivo] = useState(false);
   const [value, setValue] = useState("");
   const [value2, setValue2] = useState("");
+
   const [filteredCards, setFilteredCards] = useState([]);
 
   function onChange(event) {
@@ -19,22 +20,6 @@ export function Bottone({ data, setCards, setValore }) {
         return updatedCards;
       }
       return prevCards;
-    });
-
-    setValore((prevValore) => {
-      if (newValue === "a" || newValue === "0") {
-        return prevValore - 1;
-      } else if (newValue === "7" || newValue === "8" || newValue === "9") {
-        return prevValore - 0;
-      } else if (
-        newValue === "2" ||
-        newValue === "3" ||
-        newValue === "4" ||
-        newValue === "5" ||
-        newValue === "6"
-      ) {
-        return prevValore + 1;
-      }
     });
   }
 
@@ -54,8 +39,9 @@ export function Bottone({ data, setCards, setValore }) {
       }
       return prevCards;
     });
+
     setValore((prevValore) => {
-      if (newValue2 === "a" || newValue2 === "0") {
+      if (newValue2 === "1" || newValue2 === "0") {
         return prevValore - 1;
       } else if (newValue2 === "7" || newValue2 === "8" || newValue2 === "9") {
         return prevValore - 0;
@@ -78,6 +64,7 @@ export function Bottone({ data, setCards, setValore }) {
     const firstMatchInput2 = data.find((card) => card.value === input2);
 
     const results = [];
+
     if (firstMatchInput1) results.push(firstMatchInput1);
     if (firstMatchInput2) results.push(firstMatchInput2);
 
@@ -98,49 +85,110 @@ export function Bottone({ data, setCards, setValore }) {
   }
 
   return (
-    <>
+    <div>
       {!attivo ? (
-        <button className={"border-black"} onClick={click}>
-          Attiva
+        <button
+          style={{
+            backgroundColor: "green",
+            color: "white",
+            border: "1px solid white",
+          }}
+          onClick={click}
+        >
+          +
         </button>
       ) : (
-        <div>
-          <button className={"border-black"} onClick={disattiva}>
-            Disattiva
-          </button>
-          <button className={"border-black"} onClick={pulisciInput}>
-            Pulisci
-          </button>
-          <input
-            className={"border-black"}
-            type="text"
-            onChange={onChange}
-            value={value}
-            placeholder="Inserisci un valore carta"
-          />
-          <input
-            className={"border-black"}
-            type="text"
-            onChange={onChangeSecond}
-            value={value2}
-            placeholder="Inserisci un altro valore carta"
-          />
-          <div>
-            {filteredCards.length > 0 ? (
-              filteredCards.map((card, index) => (
-                <img
-                  key={`${card.code}-${index}`}
-                  src={card.image}
-                  alt={`${card.value} of ${card.suit}`}
-                  style={{ width: "58px", height: "58px", padding: "10px" }}
-                />
-              ))
-            ) : (
-              <p>Nessuna carta trovata</p>
-            )}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column-reverse",
+          }}
+        >
+          <div style={{ display: "flex", gap: "2px", margin: "10px" }}>
+            <div>
+              <button
+                style={{
+                  backgroundColor: "red",
+                  color: "white",
+                  border: "1px solid white",
+                }}
+                onClick={disattiva}
+              >
+                -
+              </button>
+            </div>
+            <div>
+              <button onClick={pulisciInput}>Clear</button>
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column-reverse",
+              gap: "10px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                gap: "5px",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <input
+                className="no-arrows border border-gray-300 rounded-md p-2"
+                style={{
+                  width: "50px",
+                  height: "40px",
+                  border: "1px solid black",
+                  fontSize: "40px",
+                  textAlign: "center",
+                  verticalAlign: "middle",
+                  lineHeight: "70px",
+                }}
+                type="number"
+                onChange={onChange}
+                value={value}
+                min={0}
+                max={9}
+              />
+              <input
+                style={{
+                  width: "50px",
+                  height: "40px",
+                  border: "1px solid black",
+                  fontSize: "40px",
+                  textAlign: "center",
+                  verticalAlign: "middle",
+                  lineHeight: "70px",
+                }}
+                type="number"
+                onChange={onChangeSecond}
+                value={value2}
+                min={0}
+                max={9}
+              />
+            </div>
+
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              {filteredCards.length > 0 ? (
+                filteredCards.map((card, index) => (
+                  <img
+                    key={`${card.code}-${index}`}
+                    src={card.image}
+                    alt={`${card.value} of ${card.suit}`}
+                    style={{ width: "70px", height: "70px", padding: "10px" }}
+                  />
+                ))
+              ) : (
+                <p>Nessuna carta trovata</p>
+              )}
+            </div>
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
