@@ -6,12 +6,15 @@ import AggiungiMazzo from "./Componenti/AggiungiMazzo";
 import Calcolo from "./Componenti/Calcolo";
 import RemoveCard from "./Componenti/removeCardd";
 import Apc from "./Componenti/apc";
+import DataCards from "./Componenti/dataCards";
 
 function App() {
   const [cards, setCards] = useState([]);
   const [error, setError] = useState(null);
   const [valore, setValore] = useState(0);
   const [cards2, setCards2] = useState([]);
+  const [value1, setValue1] = useState([]);
+  const [value2, setValue2] = useState([]);
 
   const fetchCards = async () => {
     const apiUrl = "https://deckofcardsapi.com/api/deck/new/draw/?count=52";
@@ -120,6 +123,14 @@ function App() {
         setCards={setCards}
         cards2={cards2}
         setValore={setValore}
+      />
+
+      <DataCards
+        value1={value1}
+        setValue1={setValue1}
+        cards={cards}
+        value2={value2}
+        setValue2={setValue2}
       />
     </>
   );
