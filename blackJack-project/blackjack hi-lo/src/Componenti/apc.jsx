@@ -51,7 +51,7 @@ export default function Apc({ cards, setCards, cards2, setValore }) {
 
   return (
     <>
-      <div style={{ position: "absolute", top: "25%", left: "50%" }}>
+      <div style={{ position: "absolute", top: "45%", left: "50%" }}>
         <img
           key={`${ultima.code}`}
           src={ultima.image}
@@ -69,7 +69,7 @@ export default function Apc({ cards, setCards, cards2, setValore }) {
           display: "flex",
           justifyContent: "center",
           position: "absolute",
-          top: "50%",
+          top: "70%",
           left: "15%",
         }}
       >

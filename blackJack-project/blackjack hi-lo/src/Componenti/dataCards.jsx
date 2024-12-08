@@ -9,9 +9,9 @@ export default function DataCards({
 }) {
   const mazzi = cards.length / 52;
 
-  const highCardsTc = value1.length / cards.length;
+  const highCardsTc = (value1.length / cards.length) * 100;
 
-  const lowCardsTc = value2.length / cards.length;
+  const lowCardsTc = (value2.length / cards.length) * 100;
 
   const highLessLow = highCardsTc - lowCardsTc;
 
@@ -19,7 +19,10 @@ export default function DataCards({
 
   useEffect(() => {
     const filteredCards = cards.filter(
-      (card) => parseInt(card.value) === 1 || parseInt(card.value) === 0
+      (card) =>
+        parseInt(card.value) === 1 ||
+        parseInt(card.value) === 0 ||
+        parseInt(card.value) === 10
     );
     setValue1(filteredCards);
 
@@ -37,7 +40,10 @@ export default function DataCards({
   return (
     <>
       <p>Carte dal valore alto (10, e A): {value1.length}</p>
+      <p>Probabilita carta alta: {highCardsTc.toFixed(2)} %</p>
+
       <p>Carte dal valore basso (dal 2 al 6): {value2.length}</p>
+      <p>Probabilitaa carta bassa: {lowCardsTc.toFixed(2)} %</p>
       <p>{finalCount.toFixed(2)}</p>
     </>
   );
