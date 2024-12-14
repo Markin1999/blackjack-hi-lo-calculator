@@ -6,6 +6,7 @@ import AggiungiMazzo from "./Componenti/AggiungiMazzo";
 import Calcolo from "./Componenti/Calcolo";
 import RemoveCard from "./Componenti/removeCardd";
 import Apc from "./Componenti/apc";
+import Aside from "./Componenti/aside";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -14,6 +15,16 @@ function App() {
   const [cards2, setCards2] = useState([]);
   const [value1, setValue1] = useState([]);
   const [value2, setValue2] = useState([]);
+  const [valueA, setValueA] = useState([]);
+  const [valueSecond, setValueSecond] = useState([]);
+  const [value3, setValue3] = useState([]);
+  const [value4, setValue4] = useState([]);
+  const [value5, setValue5] = useState([]);
+  const [value6, setValue6] = useState([]);
+  const [value7, setValue7] = useState([]);
+  const [value8, setValue8] = useState([]);
+  const [value9, setValue9] = useState([]);
+  const [value10, setValue10] = useState([]);
 
   const fetchCards = async () => {
     const apiUrl = "https://deckofcardsapi.com/api/deck/new/draw/?count=52";
@@ -47,7 +58,8 @@ function App() {
           value:
             card.value === "QUEEN" ||
             card.value === "KING" ||
-            card.value === "JACK"
+            card.value === "JACK" ||
+            card.value === "10"
               ? "0"
               : card.value === "ACE"
               ? "1"
@@ -129,6 +141,30 @@ function App() {
         setCards={setCards}
         cards2={cards2}
         setValore={setValore}
+      />
+
+      <Aside
+        valueA={valueA}
+        setValueA={setValueA}
+        valueSecond={valueSecond}
+        setValueSecond={setValueSecond}
+        value3={value3}
+        setValue3={setValue3}
+        value4={value4}
+        setValue4={setValue4}
+        value5={value5}
+        setValue5={setValue5}
+        value6={value6}
+        setValue6={setValue6}
+        value7={value7}
+        setValue7={setValue7}
+        value8={value8}
+        setValue8={setValue8}
+        value9={value9}
+        setValue9={setValue9}
+        value10={value10}
+        setValue10={setValue10}
+        cards={cards}
       />
     </>
   );
