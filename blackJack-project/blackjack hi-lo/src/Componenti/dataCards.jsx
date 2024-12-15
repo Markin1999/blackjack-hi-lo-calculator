@@ -6,12 +6,19 @@ export default function DataCards({
   setValue1,
   value2,
   setValue2,
+  valore,
 }) {
   const mazzi = cards.length / 52;
 
   const highCardsTc = (value1.length / cards.length) * 100;
 
   const lowCardsTc = (value2.length / cards.length) * 100;
+
+  const dynamicTC = valore / mazzi;
+
+  const dynamicTC2 = value1.length / value2.length;
+
+  const dynamicTC3 = dynamicTC / dynamicTC2;
 
   const highLessLow = highCardsTc - lowCardsTc;
 
@@ -45,6 +52,47 @@ export default function DataCards({
       <p>Carte dal valore basso (dal 2 al 6): {value2.length}</p>
       <p>Probabilitaa carta bassa: {lowCardsTc.toFixed(2)} %</p>
       <p>{finalCount.toFixed(2)}</p>
+
+      <p>Dynamic TC: {dynamicTC3.toFixed(2)}</p>
+
+      <div>
+        {dynamicTC3 > 4 ? (
+          <p>Il mazzo è pieno di carte alte! (+10 unità)</p>
+        ) : dynamicTC3 > 3 ? (
+          <p>La prossima carta sarà probabilmente alta. (+6 unita)</p>
+        ) : dynamicTC3 > 2 ? (
+          <p>Buone probabilità per carte alte. (+4 unita)</p>
+        ) : dynamicTC3 > 1 ? (
+          <p>
+            Il mazzo è leggermente favorevole. Gioca con intelligenza e valuta
+            ogni mossa. (+ 1 unita)
+          </p>
+        ) : dynamicTC3 === 0 ? (
+          <p>No previsioni al momento. Il mazzo è neutrale. (1 unita)</p>
+        ) : dynamicTC3 < -5 ? (
+          <p>
+            Il mazzo è sfavorevole, pieno di carte basse. Lascia il tavolo se
+            possibile. (1 unita)
+          </p>
+        ) : dynamicTC3 < -3 ? (
+          <p>
+            Le probabilità sono contro di te. Riduci al minimo le puntate. (1
+            unita)
+          </p>
+        ) : dynamicTC3 < -2 ? (
+          <p>
+            La prossima carta sarà probabilmente bassa. Procedi con molta
+            cautela. (1 unita)
+          </p>
+        ) : dynamicTC3 < -1 ? (
+          <p>
+            Il mazzo non è favorevole. Considera di ridurre le puntate o giocare
+            più conservativo. (1 unita)
+          </p>
+        ) : (
+          <p>No previsioni specifiche, resta attento al gioco. (1 unita)</p>
+        )}
+      </div>
     </>
   );
 }

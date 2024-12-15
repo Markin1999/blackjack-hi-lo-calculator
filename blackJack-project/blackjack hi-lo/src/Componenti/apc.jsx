@@ -24,7 +24,7 @@ export default function Apc({ cards, setCards, cards2, setValore }) {
       return matchingCard || prevUltima;
     });
 
-    setValore((prevValore) => {
+    /*setValore((prevValore) => {
       const newValue = cards.find(
         (card) => parseInt(card.value) === valueToRemove
       );
@@ -43,6 +43,32 @@ export default function Apc({ cards, setCards, cards2, setValore }) {
           return prevValore;
         } else if (["3", "4", "5", "6"].includes(cardValue)) {
           return prevValore + 3;
+        }
+      }
+      return prevValore;
+    });*/
+
+    setValore((prevValore) => {
+      const newValue = cards.find(
+        (card) => parseInt(card.value) === valueToRemove
+      );
+
+      if (newValue) {
+        const cardValue = newValue.value;
+        if (["2"].includes(cardValue)) {
+          return prevValore + 0.5;
+        } else if (["3", "6"].includes(cardValue)) {
+          return prevValore + 1;
+        } else if (["4", "5"].includes(cardValue)) {
+          return prevValore + 1.5;
+        } else if (["7"].includes(cardValue)) {
+          return prevValore + 0.5;
+        } else if (["9"].includes(cardValue)) {
+          return prevValore - 0.5;
+        } else if (["0", "A"].includes(cardValue)) {
+          return prevValore - 1;
+        } else if (["8"].includes(cardValue)) {
+          return prevValore;
         }
       }
       return prevValore;

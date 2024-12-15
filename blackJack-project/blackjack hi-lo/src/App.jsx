@@ -4,7 +4,6 @@ import { Bottone } from "./Componenti/Bottone";
 import Main from "./Componenti/Main";
 import AggiungiMazzo from "./Componenti/AggiungiMazzo";
 import Calcolo from "./Componenti/Calcolo";
-import RemoveCard from "./Componenti/removeCardd";
 import Apc from "./Componenti/apc";
 import Aside from "./Componenti/aside";
 
@@ -172,4 +171,7 @@ function App() {
 
 export default App;
 
-//Fare in modo che posso reindirizzare quanti mazzi voglio e con lo spread operator, vado ad eliminare l'elemento selezionato dall'input
+//Devo aggiungere il calcolo a un unita. la puntata mina e 5 euro, quindi un unita equivale a 5 euro.
+//Poi, se: TC +2: Punta 40€ (4 unità).
+//TC +3: Punta 60€ (6 unità).
+//TC +4: Punta 100€ (10 unità).
