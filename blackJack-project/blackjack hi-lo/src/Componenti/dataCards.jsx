@@ -7,6 +7,7 @@ export default function DataCards({
   value2,
   setValue2,
   valore,
+  setDynamicTC,
 }) {
   const mazzi = cards.length / 52;
 
@@ -42,7 +43,9 @@ export default function DataCards({
         parseInt(card.value) === 6
     );
     setValue2(filteredCards2);
-  }, [cards, setValue1, setValue2]);
+
+    setDynamicTC(dynamicTC3);
+  }, [cards, setValue1, setValue2, dynamicTC3]);
 
   return (
     <>

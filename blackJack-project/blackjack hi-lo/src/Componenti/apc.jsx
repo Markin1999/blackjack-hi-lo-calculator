@@ -65,7 +65,7 @@ export default function Apc({ cards, setCards, cards2, setValore }) {
           return prevValore + 0.5;
         } else if (["9"].includes(cardValue)) {
           return prevValore - 0.5;
-        } else if (["0", "A"].includes(cardValue)) {
+        } else if (["0", "1rf"].includes(cardValue)) {
           return prevValore - 1;
         } else if (["8"].includes(cardValue)) {
           return prevValore;

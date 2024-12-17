@@ -6,6 +6,7 @@ import AggiungiMazzo from "./Componenti/AggiungiMazzo";
 import Calcolo from "./Componenti/Calcolo";
 import Apc from "./Componenti/apc";
 import Aside from "./Componenti/aside";
+import Possibilita from "./possibilita";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -24,6 +25,7 @@ function App() {
   const [value8, setValue8] = useState([]);
   const [value9, setValue9] = useState([]);
   const [value10, setValue10] = useState([]);
+  const [dynamicTC, setDynamicTC] = useState(null);
 
   const fetchCards = async () => {
     const apiUrl = "https://deckofcardsapi.com/api/deck/new/draw/?count=52";
@@ -132,6 +134,7 @@ function App() {
           setValue1={setValue1}
           value2={value2}
           setValue2={setValue2}
+          setDynamicTC={setDynamicTC}
         />
       </div>
 
@@ -165,6 +168,7 @@ function App() {
         setValue10={setValue10}
         cards={cards}
       />
+      <Possibilita dynamicTC={dynamicTC} />
     </>
   );
 }

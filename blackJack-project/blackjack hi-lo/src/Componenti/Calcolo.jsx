@@ -8,6 +8,7 @@ export default function Calcolo({
   setValue1,
   value2,
   setValue2,
+  setDynamicTC,
 }) {
   const mazzi = cards.length / 52;
   const trueCount = valore / mazzi;
@@ -32,6 +33,7 @@ export default function Calcolo({
         value2={value2}
         setValue2={setValue2}
         valore={valore}
+        setDynamicTC={setDynamicTC}
       />
     </div>
   );

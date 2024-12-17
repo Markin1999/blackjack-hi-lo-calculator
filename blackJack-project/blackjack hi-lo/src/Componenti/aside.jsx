@@ -136,7 +136,7 @@ export default function Aside({
       <div
         style={{
           position: "absolute",
-          top: "30%",
+          top: "40%",
           left: "20%",
           display: "flex",
         }}
