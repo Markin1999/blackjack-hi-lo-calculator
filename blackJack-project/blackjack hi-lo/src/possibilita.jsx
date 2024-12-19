@@ -3,90 +3,322 @@ import { useEffect, useRef, useState } from "react";
 export default function Possibilita({ dynamicTC }) {
   const [messaggio, setMessaggio] = useState("");
   const [input1o, setInput1o] = useState("");
-  const [input2o, setInput2o] = useState("");
   const [inputMo, setInputMo] = useState("");
-
+  const tc = dynamicTC;
   useEffect(() => {
-    const input1 = Number(input1o);
-    const input2 = Number(input2o);
-    const inputM = Number(inputMo);
-    const tc = dynamicTC;
-
-    if (input1 && input2 && inputM && tc) {
-      let decisione = "";
-
-      // Controlla se input1 è un Asso (1) e quindi mano soft
-      if (input1 === 1 || input2 === 1) {
-        const softTotal2 =
-          input1 === 1 ? input1 + 10 + input2 : input1 + input2 + 10;
-        const softTotal = input1 + input2;
-
-        // Logica per il Dynamic True Count (DTC)
-        switch (softTotal2) {
-          case 13: // A,2
-            if (tc >= 6 && inputM <= 4) decisione = "Raddoppia";
-            else if (tc >= 2 && inputM === 4) decisione = "Raddoppia";
-            else if (inputM >= 5 && inputM <= 6) decisione = "Raddoppia";
-            else decisione = "Chiedi";
-            break;
-
-          case 14: // A,3
-            if (tc >= 6 && inputM <= 4) decisione = "Raddoppia";
-            else if (tc >= 2 && inputM === 4) decisione = "Raddoppia";
-            else if (inputM >= 5 && inputM <= 6) decisione = "Raddoppia";
-            else decisione = "Chiedi";
-            break;
-
-          case 15: // A,4
-            if (tc >= 6 && inputM <= 4) decisione = "Raddoppia";
-            else if (tc >= 2 && inputM === 3) decisione = "Raddoppia";
-            else if (inputM >= 4 && inputM <= 6) decisione = "Raddoppia";
-            else decisione = "Chiedi";
-            break;
-
-          case 16: // A,5
-            if (tc >= 6 && inputM <= 4) decisione = "Raddoppia";
-            else if (tc >= 2 && inputM === 3) decisione = "Raddoppia";
-            else if (inputM >= 4 && inputM <= 6) decisione = "Raddoppia";
-            else decisione = "Chiedi";
-            break;
-
-          case 17: // A,6
-            if (inputM >= 2 && inputM <= 6) decisione = "Raddoppia";
-            else if (tc >= 4 && inputM <= 3) decisione = "Raddoppia";
-            else decisione = "Chiedi";
-            break;
-
-          case 18: // A,7
-            if (inputM >= 2 && inputM <= 6) decisione = "Raddoppia";
-            else if (inputM === 7) decisione = "Stai";
-            else if (tc >= 4 && inputM === 2) decisione = "Raddoppia";
-            else decisione = "Chiedi";
-            break;
-
-          case 19: // A,8
-            if (tc >= 6 && (inputM === 5 || inputM === 6))
-              decisione = "Raddoppia";
-            else decisione = "Stai";
-            break;
-
-          case 20: // A,9
-            decisione = "Stai";
-            break;
-
-          default:
-            decisione = "Chiedi";
-            break;
+    if (
+      input1o &&
+      Number(input1o) <= 21 &&
+      inputMo &&
+      Number(inputMo) <= 21 &&
+      tc
+    ) {
+      if (Number(tc) <= -6) {
+        if (Number(input1o) <= 10) {
+          setMessaggio("No split, no raddoppi. Chiama carta");
+        } else if (
+          Number(input1o) === 11 &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 6
+        ) {
+          setMessaggio("Raddoppia");
+        } else if (
+          Number(input1o) === 11 &&
+          Number(inputMo) >= 7 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio("Chiama carta");
+        } else if (
+          Number(input1o) === 12 &&
+          Number(inputMo) >= 4 &&
+          Number(inputMo) <= 6
+        ) {
+          setMessaggio("Resta");
+        } else if (
+          Number(input1o) === 12 &&
+          ((Number(inputMo) >= 7 && Number(inputMo) <= 10) ||
+            Number(inputMo) === 3 ||
+            Number(inputMo) === 2)
+        ) {
+          setMessaggio("Chiedi carta");
+        } else if (
+          Number(input1o) === 13 &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 6
+        ) {
+          setMessaggio("Resta");
+        } else if (
+          Number(input1o) === 13 &&
+          Number(inputMo) >= 7 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio("Chiedi carta");
+        } else if (
+          Number(input1o) === 14 &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 6
+        ) {
+          setMessaggio("Resta");
+        } else if (
+          Number(input1o) === 14 &&
+          Number(inputMo) >= 7 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio("Chiedi carta");
+        } else if (
+          (Number(input1o) === 15 || Number(input1o) === 16) &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 6
+        ) {
+          setMessaggio("Resta");
+        } else if (
+          (Number(input1o) === 15 || Number(input1o) === 16) &&
+          Number(inputMo) >= 7 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio("Se puoi arrenditi, altrimenti chiedi carta");
+        } else if (
+          Number(input1o) === 17 &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio(
+            "Resta di base. Se hai un Asso in mano, raddoppia se il mazziere ha una carta tra 2 e 6; in caso contrario, chiedi un'altra carta."
+          );
+        } else if (
+          Number(input1o) === 18 &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio(
+            "Resta di base. Se hai un Asso in mano, raddoppia se il mazziere ha una carta tra 2 e 6; in caso contrario, resta."
+          );
+        } else if (
+          (Number(input1o) === 19 || Number(input1o) === 20) &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio("Resta");
         }
-      } else {
-        decisione = "Non è una mano soft (A + seconda carta)";
+      } else if (Number(tc) <= -4) {
+        if (Number(input1o) <= 9) {
+          setMessaggio("No split, no raddoppi. Chiama carta");
+        } else if (
+          Number(input1o) === 10 &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 9
+        ) {
+          setMessaggio("Raddoppia");
+        } else if (
+          Number(input1o) === 10 &&
+          Number(inputMo) >= 10 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio("Chiedi carta");
+        } else if (Number(input1o) === 11) {
+          setMessaggio("Raddoppia, o chiedi carta");
+        } else if (
+          Number(input1o) === 12 &&
+          Number(inputMo) >= 4 &&
+          Number(inputMo) <= 6
+        ) {
+          setMessaggio("Resta");
+        } else if (
+          Number(input1o) === 12 &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 3
+        ) {
+          setMessaggio("Chiedi carta");
+        } else if (
+          Number(input1o) === 12 &&
+          Number(inputMo) >= 7 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio("Chiedi carta");
+        } else if (
+          Number(input1o) === 13 &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 6
+        ) {
+          setMessaggio("Resta");
+        } else if (
+          Number(input1o) === 13 &&
+          Number(inputMo) >= 7 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio("Chiedi carta");
+        } else if (
+          Number(input1o) === 14 &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 6
+        ) {
+          setMessaggio("Resta");
+        } else if (
+          Number(input1o) === 14 &&
+          Number(inputMo) >= 7 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio("Chiedi carta");
+        } else if (
+          Number(input1o) === 15 &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 6
+        ) {
+          setMessaggio("Resta");
+        } else if (
+          Number(input1o) === 15 &&
+          Number(inputMo) >= 7 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio("Se puoi arrenditi, altrimenti chiedi carta");
+        } else if (
+          Number(input1o) === 16 &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 6
+        ) {
+          setMessaggio("Resta");
+        } else if (
+          Number(input1o) === 16 &&
+          Number(inputMo) >= 7 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio("Se puoi arrenditi, altrimenti chiedi carta");
+        } else if (
+          Number(input1o) === 17 &&
+          Number(inputMo) >= 7 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio("Se hai un A chiedi carta, altrimenti resta.");
+        } else if (
+          Number(input1o) === 17 &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 6
+        ) {
+          setMessaggio("Resta");
+        } else if (
+          (Number(input1o) === 18 ||
+            Number(input1o) === 19 ||
+            Number(input1o) === 20) &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio("Resta");
+        }
+      } else if (Number(tc) <= -2) {
+        if (Number(input1o) <= 9) {
+          setMessaggio("No split, no raddoppi. Chiama carta");
+        } else if (
+          Number(input1o) === 10 &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 6
+        ) {
+          setMessaggio("Raddoppia");
+        } else if (
+          Number(input1o) === 10 &&
+          Number(inputMo) >= 7 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio("Chiama carta");
+        } else if (
+          Number(input1o) === 11 &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 6
+        ) {
+          setMessaggio("Raddoppia");
+        } else if (
+          Number(input1o) === 11 &&
+          Number(inputMo) >= 7 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio("Chiedi carta");
+        } else if (
+          Number(input1o) === 12 &&
+          Number(inputMo) >= 4 &&
+          Number(inputMo) <= 6
+        ) {
+          setMessaggio("Resta");
+        } else if (
+          Number(input1o) === 12 &&
+          ((Number(inputMo) >= 2 && Number(inputMo) <= 3) ||
+            (Number(inputMo) >= 7 && Number(inputMo) <= 11))
+        ) {
+          setMessaggio("Chiedi carta");
+        } else if (
+          Number(input1o) === 13 &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 6
+        ) {
+          setMessaggio("Resta");
+        } else if (
+          Number(input1o) === 13 &&
+          Number(inputMo) >= 7 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio("Chiedi carta");
+        } else if (
+          Number(input1o) === 14 &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 6
+        ) {
+          setMessaggio("Resta");
+        } else if (
+          Number(input1o) === 14 &&
+          Number(inputMo) >= 7 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio("Chiedi carta");
+        } else if (
+          (Number(input1o) === 15 || Number(input1o) === 16) &&
+          Number(inputMo) >= 7 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio("Se puoi dividi o arrenditi, altrimenti chiedi carta");
+        } else if (
+          (Number(input1o) === 15 || Number(input1o) === 16) &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 6
+        ) {
+          setMessaggio("Se puoi dividi, altrimenti resta");
+        } else if (
+          Number(input1o) === 17 &&
+          Number(inputMo) >= 3 &&
+          Number(inputMo) <= 6
+        ) {
+          setMessaggio("Resta di base. Se hai un Asso in mano, raddoppia.");
+        } else if (
+          Number(input1o) === 17 &&
+          (Number(inputMo) === 2 ||
+            (Number(inputMo) >= 7 && Number(inputMo) <= 11))
+        ) {
+          setMessaggio("Resta di base. Se hai un Asso in mano, chiedi carta.");
+        } else if (
+          Number(input1o) === 18 &&
+          Number(inputMo) >= 3 &&
+          Number(inputMo) <= 6
+        ) {
+          setMessaggio("Resta di base. Se hai un Asso in mano, raddoppia.");
+        } else if (
+          Number(input1o) === 18 &&
+          (Number(inputMo) === 2 ||
+            (Number(inputMo) >= 7 && Number(inputMo) <= 11))
+        ) {
+          setMessaggio("Resta.");
+        } else if (
+          (Number(input1o) === 19 || Number(input1o) === 20) &&
+          Number(inputMo) >= 2 &&
+          Number(inputMo) <= 11
+        ) {
+          setMessaggio("Resta");
+        }
       }
-
-      setMessaggio(decisione);
+      /*else if ("Qui modifichi il dtc a 0") {
+      }*/
     } else {
-      setMessaggio("Inserisci tutte le carte");
+      setMessaggio("ATTESA CARTE");
     }
-  }, [input1o, input2o, inputMo, dynamicTC]);
+
+    console.log(messaggio);
+  }, [input1o, inputMo, tc]);
 
   return (
     <div
@@ -99,23 +331,12 @@ export default function Possibilita({ dynamicTC }) {
       }}
     >
       <div>
-        <h6>INSERISCI LE TUE CARTE</h6>
+        <h6>INSERISCI LA TUA SOMMA</h6>
 
         <input
           type="text"
           value={input1o}
           onChange={(e) => setInput1o(e.target.value)}
-          style={{
-            width: "80px",
-            border: "1px solid #ccc",
-            padding: "4px",
-            borderRadius: "4px",
-          }}
-        />
-        <input
-          type="text"
-          value={input2o}
-          onChange={(e) => setInput2o(e.target.value)}
           style={{
             width: "80px",
             border: "1px solid #ccc",
