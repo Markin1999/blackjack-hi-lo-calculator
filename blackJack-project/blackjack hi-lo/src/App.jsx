@@ -7,6 +7,8 @@ import Calcolo from "./Componenti/Calcolo";
 import Apc from "./Componenti/apc";
 import Aside from "./Componenti/aside";
 import Possibilita from "./possibilita";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Start from "./Componenti/start";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -85,6 +87,12 @@ function App() {
   }, [cards]);
   return (
     <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Start />} />
+        </Routes>
+      </BrowserRouter>
+
       <div className="container">
         <div>
           <Main />
